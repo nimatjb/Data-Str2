@@ -20,3 +20,24 @@ public:
             return -1;
         }
     }
+    int Delete(int index) {
+        if (index < size) {
+            int obj = array[index];
+            array[index] = 0;
+            return obj;
+        }
+        else {
+            return -1;
+        }
+    }
+
+    int find(int object) {
+        for (int i = 0; i < size; i++) {
+            if (array[i] == object) {
+                return i;
+            }
+        }
+        return -1;
+    }
+};
+
