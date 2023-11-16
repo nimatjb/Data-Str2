@@ -3,17 +3,17 @@ using namespace std;
 class Queue
 {
 private:
-    int* arr;       // Ø¢Ø±Ø§ÛŒÙ‡â€ŒÛŒ Ø¯Ø§Ø¯Ù‡â€ŒÙ‡Ø§
-    int capacity;   // Ø¸Ø±ÙÛŒØª ØµÙ
-    int size = 0;       // ØªØ¹Ø¯Ø§Ø¯ Ø¹Ù†Ø§ØµØ± ÙØ¹Ù„ÛŒ Ø¯Ø± ØµÙ
-    int front = -1;      // Ø§ÛŒÙ†Ø¯Ú©Ø³ Ø¹Ù†ØµØ± Ø§Ø¨ØªØ¯Ø§ÛŒ ØµÙ
-    int rear = -1;       // Ø§ÛŒÙ†Ø¯Ú©Ø³ Ø¹Ù†ØµØ± Ø§Ù†ØªÙ‡Ø§ÛŒ ØµÙ
+    int* arr;       // ارایه صف
+    int cap;   // ظرفیت صف
+    int size = 0;       // تعداد عناصر فعلی در صف
+    int front = -1;      // ایندکس اول صف
+    int rear = -1;       // ایندکس اخر صف
 
 public:
-    Queue(int capacity) {
+    Queue(int cap) {
 
-        this->capacity = capacity;
-        this->arr = new int[capacity];
+        this->cap = cap;
+        this->arr = new int[cap];
     }
 
     int IsEmpty() {
@@ -25,7 +25,7 @@ public:
         }
     }
     bool IsFull() {
-        return size == capacity;
+        return size == cap;
     }
 
 
@@ -38,7 +38,7 @@ public:
                 front = rear = 0;
             }
         }
-        rear = (rear + 1) % capacity;
+        rear = (rear + 1) % cap;
         arr[rear] = object;
         size++;
     }
@@ -48,7 +48,7 @@ public:
             return -1;
         }
         int object = arr[front];
-        front = (front + 1) % capacity;
+        front = (front + 1) % cap;
         size--;
 
         return object;
