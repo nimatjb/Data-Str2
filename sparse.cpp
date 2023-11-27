@@ -1,31 +1,28 @@
 #include <iostream>
 using namespace std;
-#define MAX_ROWS 100
-#define MAX_COLS 100
-
-void sp(int sparce[MAX_ROWS][MAX_COLS], int row, int col) {
-
-    int arry[MAX_ROWS][MAX_COLS];
-
-    int k = 1;
 
 
-    for (int i = 0; i < row; i++) {
-        for (int j = 0; j < col; j++) {
-            if (arry[i][j] != 0) {
-
-                arry[k][0] = i;
-                arry[k][1] = j;
-                arry[k][2] = arry[i][j];
-                k++;
-            }
-        }
+void sparse(int a[][3], int row, int col, int spars[][3], int i, int j, int& k) {
+    if (i == row) {
+        spars[0][0] = row;
+        spars[0][1] = col;
+        spars[0][2] = k - 1;
+        return;
     }
-    arry[0][0] = row;
-    arry[0][1] = col;
-    arry[0][2] = k - 1;
 
-};
+    if (j == col) {
+        sparse(a, row, col, spars, i + 1, 0, k);
+        return;
+    }
 
+    if (a[i][j] != 0) {
+        spars[k][0] = i;
+        spars[k][1] = j;
+        spars[k][2] = a[i][j];
+        k++;
+    }
+
+    sparse(a, row, col, spars, i, j + 1, k);
+}
 
 
