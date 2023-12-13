@@ -84,6 +84,50 @@ public:
         size--;
         return data;
     }
+    int removeNodeAtEnd() {
+        return removeNodeAtIndex(size - 1);
+    }
+    int removeNodeAtBegin() {
+        return removeNodeAtIndex(0);
+    }
+    int sizeOfList() {
+        return size;
+    }
+    void printList() {
+        Node* curr = head;
+        while (curr != nullptr) {
+            std::cout << curr->data;
+            curr = curr->next;
+        }
+        void LinkedList::Concatenate(LinkedList & list) {
+            if (head == NULL) {
+                head = list.head;
+                tail = list.tail;
+            }
+            else {
+                tail->next = list.head;
+                tail = list.tail;
+            }
+            list.head = NULL;
+            list.tail = NULL;
+        }
+        void LinkedList::Invert() {
+            Node* prev = NULL;
+            Node* current = head;
+            Node* next = NULL;
+            while (current != NULL) {
+                next = current->next;
+                current->next = prev;
+                prev = current;
+                current = next;
+            }
+            head = prev;
+        }
+
+
+
+    }
+};
    
 };
 
