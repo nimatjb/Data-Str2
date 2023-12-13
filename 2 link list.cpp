@@ -110,6 +110,61 @@ public:
         size--;
         return data;
     }
+    int RemoveNodeAtEnd() {
+        return RemoveNodeAtIndex(size - 1);
+    }
+    int RemoveNodeAtBegin() {
+        return RemoveNodeAtIndex(0);
+    }
+    int SizeOfList() {
+        return size;
+    }
+    void Concatenate(DoublyLinkedList* LinkedList) {
+        if (LinkedList->size == 0) {
+            return;
+        }
+        if (size == 0) {
+            head = LinkedList->head;
+            tail = LinkedList->tail;
+        }
+        else {
+            tail->next = LinkedList->head;
+            LinkedList->head->prev = tail;
+            tail = LinkedList->tail;
+        }
+        size += LinkedList->size;
+        LinkedList->head = nullptr;
+        LinkedList->tail = nullptr;
+        LinkedList->size = 0;
+    }
+    void Invert() {
+        if (size == 0 || size == 1) {
+            return;
+        }
+        Node* current = head;
+        while (current != nullptr) {
+            Node* temp = current->prev;
+            current->prev = current->next;
+            current->next = temp;
+            current = current->prev;
+        }
+        if (tail != nullptr) {
+            head = tail;
+            tail = head->prev;
+        }
+    }
+    void PrintList() {
+        if (size == 0) {
+            cout << "List is empty" << endl;
+            return;
+        }
+        Node* current = head;
+        while (current != nullptr) {
+            cout << current->data << " ";
+            current = current->next;
+        }
+        cout << endl;
+    }
 };
 
 
