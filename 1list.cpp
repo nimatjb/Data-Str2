@@ -1,9 +1,6 @@
 #include <iostream>
 using namespace std;
-
-
 class Node {
-
 public:
     int data;
     Node* next;
@@ -13,7 +10,6 @@ public:
         next = nullptr;
     }
 };
-
 class LinkedList {
 private:
     Node* head;
@@ -53,7 +49,6 @@ public:
         if (index < 0 || index >= size) {
             return;
         }
-
         Node* curr = head;
         for (int i = 0; i < index; i++) {
             curr = curr->next;
@@ -96,10 +91,10 @@ public:
     void printList() {
         Node* curr = head;
         while (curr != nullptr) {
-            std::cout << curr->data;
+            cout << curr->data;
             curr = curr->next;
         }
-        void LinkedList::Concatenate(LinkedList & list) {
+        void Concatenate(LinkedList & list) {
             if (head == NULL) {
                 head = list.head;
                 tail = list.tail;
@@ -111,7 +106,7 @@ public:
             list.head = NULL;
             list.tail = NULL;
         }
-        void LinkedList::Invert() {
+        void Invert() {
             Node* prev = NULL;
             Node* current = head;
             Node* next = NULL;
@@ -123,12 +118,7 @@ public:
             }
             head = prev;
         }
-
-
-
     }
-};
-   
 };
 
 
