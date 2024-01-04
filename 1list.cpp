@@ -1,9 +1,6 @@
 #include <iostream>
 using namespace std;
-
-
 class Node {
-
 public:
     int data;
     Node* next;
@@ -13,7 +10,6 @@ public:
         next = nullptr;
     }
 };
-
 class LinkedList {
 private:
     Node* head;
@@ -53,7 +49,6 @@ public:
         if (index < 0 || index >= size) {
             return;
         }
-
         Node* curr = head;
         for (int i = 0; i < index; i++) {
             curr = curr->next;
@@ -84,7 +79,46 @@ public:
         size--;
         return data;
     }
-   
+    int removeNodeAtEnd() {
+        return removeNodeAtIndex(size - 1);
+    }
+    int removeNodeAtBegin() {
+        return removeNodeAtIndex(0);
+    }
+    int sizeOfList() {
+        return size;
+    }
+    void printList() {
+        Node* curr = head;
+        while (curr != nullptr) {
+            cout << curr->data;
+            curr = curr->next;
+        }
+        void Concatenate(LinkedList & list) {
+            if (head == NULL) {
+                head = list.head;
+                tail = list.tail;
+            }
+            else {
+                tail->next = list.head;
+                tail = list.tail;
+            }
+            list.head = NULL;
+            list.tail = NULL;
+        }
+        void Invert() {
+            Node* prev = NULL;
+            Node* current = head;
+            Node* next = NULL;
+            while (current != NULL) {
+                next = current->next;
+                current->next = prev;
+                prev = current;
+                current = next;
+            }
+            head = prev;
+        }
+    }
 };
 
 

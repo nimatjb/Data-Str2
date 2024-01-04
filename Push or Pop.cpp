@@ -17,9 +17,15 @@ public:
         return (top == -1);
     }
 
-    void push(int item) {
-        if (top >= MAX_SIZE - 1) {
-            items[++top] = item;
+    int push(int item) {
+        if (is_empty()) {
+            return -1;
+        }
+        else {
+            if (top < MAX_SIZE - 1) {
+                items[++top] = item;
+                return top + 1;
+            }
         }
     }
 
@@ -28,7 +34,9 @@ public:
             return -1;
         }
         else {
-            return items[top--];
+            if (top > -1) {
+                item[top--] = -1;
+                return top + 1;
         }
     }
 
