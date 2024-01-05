@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 class Node {
 public:
@@ -41,3 +42,34 @@ public:
         }
         size++;
     }
+
+    void Remove(int value) {
+        if (head == nullptr) {
+            cout << "empty" <<endl;
+            return;
+        }
+
+        Node* curr = head;
+        Node* prev = nullptr;
+
+        while (curr != nullptr && curr->value != value) {
+            prev = curr;
+            curr = curr->next;
+        }
+
+        if (curr == nullptr) {
+            cout << "not found" << endl;
+            return;
+        }
+
+        if (prev == nullptr) {
+            head = head->next;
+        }
+        else {
+            prev->next = curr->next;
+        }
+
+        delete curr;
+        size--;
+    }
+};
