@@ -57,3 +57,74 @@ public:
             current = current->next;
         }
     }
+
+    void removeVertex(int vertex) {
+        delete graph[vertex];
+        graph[vertex] = nullptr;
+
+        for (int i = 0; i < v; i++) {
+            Node* current = graph[i];
+            Node* previous = nullptr;
+
+            while (current != nullptr) {
+                if (current->vertex == vertex) {
+                    if (previous == nullptr) {
+                        graph[i] = current->next;
+                    }
+                    else {
+                        previous->next = current->next;
+                    }
+                    delete current;
+                    break;
+                }
+
+                previous = current;
+                current = current->next;
+            }
+        }
+    }
+
+    void bfs() {
+        bool* visited = new bool[v];
+        for (int i = 0; i < v; i++) {
+            visited[i] = false;
+        }
+
+        for (int i = 0; i < v; i++) {
+            if (!visited[i]) {
+                queue<int> q;
+                q.push(i);
+                visited[i] = true;
+
+                while (!q.empty()) {
+                    int vertex = q.front();
+                    q.pop();
+                    cout << vertex << " ";
+
+                    Node* temp = graph[vertex];
+                    while (temp != nullptr) {
+                        if (!visited[temp->vertex]) {
+                            q.push(temp->vertex);
+                            visited[temp->vertex] = true;
+                        }
+                        temp = temp->next;
+                    }
+                }
+            }
+        }
+
+        delete[] visited;
+    }
+    void PrintGraph() {
+        for (int i = 0; i < v; ++i) {
+            cout << i << " ";
+            Node* temp = graph[i];
+            while (temp != nullptr) {
+                cout << "-> " << temp->vertex << " ";
+                temp = temp->next;
+            }
+            cout << endl;
+        }
+    }
+
+};
