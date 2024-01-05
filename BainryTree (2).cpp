@@ -75,6 +75,52 @@ private:
         }
         return current;
     }
+
+
+    bool searchRecursive(Node* currentNode, int value) {
+        if (currentNode == nullptr || currentNode->data == value) {
+            return currentNode != nullptr;
+        }
+
+        if (value < currentNode->data) {
+            return searchRecursive(currentNode->left, value);
+        }
+        else {
+            return searchRecursive(currentNode->right, value);
+        }
+    }
+
+    string preorderRecursive(Node* currentNode) {
+        string result;
+        if (currentNode != nullptr) {
+            result += to_string(currentNode->data) + " ";
+            result += preorderRecursive(currentNode->left);
+            result += preorderRecursive(currentNode->right);
+        }
+        return result;
+    }
+
+    string inorderRecursive(Node* currentNode) {
+        string result;
+        if (currentNode != nullptr) {
+            result += inorderRecursive(currentNode->left);
+            result += to_string(currentNode->data) + " ";
+            result += inorderRecursive(currentNode->right);
+        }
+        return result;
+    }
+
+    string postorderRecursive(Node* currentNode) {
+        string result;
+        if (currentNode != nullptr) {
+            result += postorderRecursive(currentNode->left);
+            result += postorderRecursive(currentNode->right);
+            result += to_string(currentNode->data) + " ";
+        }
+        return result;
+    }
+
+
 public:
     BinaryTree() {
         root = nullptr;
@@ -90,3 +136,17 @@ public:
     void remove(int value) {
         root = removeRecursive(root, value);
     }
+    bool search(int value) {
+        return searchRecursive(root, value);
+    }
+    string Preorder() {
+        return preorderRecursive(root);
+    }
+    string Inorder() {
+        return inorderRecursive(root);
+    }
+    string Postorder() {
+        return postorderRecursive(root);
+    }
+
+};
