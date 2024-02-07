@@ -16,16 +16,12 @@ public:
         this->arr = new int[cap];
     }
 
-    int IsEmpty() {
-        if (front == -1 && rear == -1) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    bool isEmpty() {
+        return size == 0;
     }
-    bool IsFull() {
-        return size == cap;
+
+    bool isFull() {
+        return size == capacity;
     }
 
 
@@ -65,22 +61,13 @@ void ReverseQueue() {
         return;
     }
 
-    int* reversedArr = new int[cap];
-    int index = 0;
-
-    // از انتهای صف به ابتدا آرایه‌ی برعکس را پر می‌کنیم
-    for (int i = rear; i >= front; i--) {
-        reversedArr[index++] = arr[i];
+    while (front != rear) {
+        rear = (rear - 1 + capacity) % capacity;
+        swap(arr[front], arr[rear]);
+        front = (front + 1) % capacity;
+        if (front == rear) {
+            break;
+        }
     }
-
-    // جایگزین کردن آرایه‌ی اصلی با آرایه‌ی برعکس شده
-    delete[] arr;
-    arr = reversedArr;
-
-    // به روزرسانی ایندکس‌ها
-    front = 0;
-    rear = size - 1;
-
-
-
+}
 };
