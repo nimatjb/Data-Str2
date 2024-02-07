@@ -59,7 +59,7 @@ public:
     }
 
     void removeVertex(int vertex) {
-        delete graph[vertex];
+        Node* current = graph[source].head;
         graph[vertex] = nullptr;
 
         for (int i = 0; i < v; i++) {
@@ -115,6 +115,20 @@ public:
 
         delete[] visited;
     }
+
+    void DFS(int** edges, int v, bool* visited, int si) {
+        visited[si] = true;
+        cout << si << " ";
+        for (int i = 0; i < v; i++) {
+            if (i == si) {
+                continue;
+            }
+            if (!visited[i] && edges[si][i] == 1) {
+                DFS(edges, v, visited, i);
+            }
+        }
+    }
+
     void PrintGraph() {
         for (int i = 0; i < v; ++i) {
             cout << i << " ";
